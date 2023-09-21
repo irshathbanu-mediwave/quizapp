@@ -1,0 +1,21 @@
+body {
+  margin: auto;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: #f2f2f2;
+}
+h1 {
+  margin: 20px 0;
+}
+.none {
+  border: none;
+}
+.container {
+  margin: auto;
+  width: fit-content;
+  height: 300px;
+  font-size: 20px;
+  font-weight: bold;
+  color: cornsilk;
+  background-color: deepskyblue;
+}
