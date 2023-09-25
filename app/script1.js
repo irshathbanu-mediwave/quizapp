@@ -1,4 +1,4 @@
-const quizData = [
+const computerData = [
   {
     id: 1,
     question: "Which language runs in a web browser?",
@@ -17,6 +17,7 @@ const quizData = [
     correct: "Cascading Style Sheets",
   },
   {
+    id: 3,
     question: "What does HTML stand for?",
     answer: [
       "Hypertext Markup Language",
@@ -27,11 +28,24 @@ const quizData = [
     correct: "Hypertext Markup Language",
   },
   {
+    id: 4,
     question: "What year was JavaScript launched?",
     answer: ["1996", "1995", "1994", "none of the above"],
     correct: "1995",
   },
 ];
+const englishdata = [
+  {
+    id: 11,
+    question: "Thomas did not the vegetables because he was busy.",
+    answer: [" bring", "bought", "had bought", "was bringing"],
+    correct: "bring",
+  },
+];
+const questionCollection = {
+  computer: computerData,
+  English: englishdata,
+};
 function makeQuiz(question) {
   const div = document.createElement("div");
   div.setAttribute("id", `quizdata-${question["id"]}`);
@@ -49,7 +63,6 @@ function makeQuiz(question) {
     radio.setAttribute("type", "radio");
     radio.setAttribute("class", "option-radio");
     radio.setAttribute("name", `answer-${question.id}`);
-
     h4.appendChild(radio);
     h4.appendChild(document.createTextNode(question.answer[i]));
     Adiv.appendChild(h4);
@@ -62,28 +75,58 @@ function makeQuiz(question) {
   div.appendChild(h3);
   div.appendChild(Adiv);
   div.appendChild(answerDiv);
-  const form = document.querySelector("#qs-item");
-  form.appendChild(div);
-  console.log(form);
+
   return div;
+  //   const form = document.getElementById("qs-item");
+  //   const button = document.createElement("button");
+  //   button.setAttribute("type", "submit");
+  //   button.innerHTML = "checkanswer";
+
+  //   console.log(button);
+  //   Totaldiv.appendChild(form);
+  //   form.appendChild(button);
+  //   Cdiv.appendChild(button);
+  //   console.log(form);
 }
+// const button = document.createElement("button");
+// button.innerHTML = "checked Answer";
+// const form = document.getElementById("qs-item");
+// form.appendChild(button);
+// // Cdiv.appendChild(button);
 function updatelistquiz() {
   clearform();
-  for (let i = 0; i < quizData.length; i++) {
-    const quizitem = makeQuiz(quizData[i]);
+  for (let i = 0; i < computerData.length; i++) {
+    const quizitem = makeQuiz(computerData[i]);
     appenttoform(quizitem);
   }
 }
+const urlParams = new URLSearchParams(window.location.search);
+const myType = urlParams.get("type");
+console.log(questionCollection[myType]);
+// edited;
+
 function clearform() {
   const form = document.querySelector("#qs-item");
   form.innerText = "";
 }
 function returnPage() {
-  window.history.back();
+  window.location.href = "index.html";
 }
 function appenttoform(quizitem) {
   const app = document.querySelector("#qs-item");
   app.appendChild(quizitem);
 }
-
+function checkanswer() {
+  const form = document.getElementById("qs-item");
+  form.submit();
+}
+// function correctanswer() {
+//   for (let i = 0; i < quizData.correct.length; i++) {
+//     const diva = document.querySelector("#footer");
+//     const para = document.createElement("p");
+//     para.setAttribute("id", "answer");
+//     para.innerHTML = quizData.correct[i];
+//     diva.appendChild(para);
+//   }
+// }
 updatelistquiz();
