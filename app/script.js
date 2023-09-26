@@ -22,23 +22,29 @@ const category = [
     value: "English",
   },
 ];
+let selectedValue;
 const quizForm = document.getElementById("quizForm");
 const categorySelect = document.getElementById("option");
 document.getElementById("submit").addEventListener("click", function (e) {
   e.preventDefault();
-  const appdiv = document.querySelector("#app");
-  const quizdiv = document.querySelector("#quizForm");
-  let selectedValue = categorySelect.value;
+  selectedValue = categorySelect.value;
   const selectedIndex = category.findIndex(
     (item) => item.value == selectedValue
   );
   const getId = category[selectedIndex].id;
   console.log(getId);
+  dropdownClick(getId);
+});
+
+function dropdownClick(getId) {
+  const appdiv = document.querySelector("#app");
+  const quizdiv = document.querySelector("#quizForm");
   // window.location.href = `index.html?type=${selectedValue}`;
   appdiv.style.display = "block";
   quizdiv.style.display = "none";
+  saveToLocalStorage(getId);
   updateQuizListUI(getId);
-});
+}
 for (let sub of category) {
   const option = document.createElement("option");
   option.value = sub.value;
@@ -168,7 +174,6 @@ button.innerHTML = "Check Answer";
 function appendToApp(quizDiv) {
   const app = document.querySelector("#app");
   app.appendChild(quizDiv);
-  saveToLocalStorage();
 }
 function updateQuizListUI(getId) {
   const qn = Question.filter((item) => item.category == getId);
@@ -179,7 +184,6 @@ function updateQuizListUI(getId) {
     const quizDiv = makeQuizDiv(qn[i]);
     appendToApp(quizDiv);
   }
-  getToLocalStorage();
 }
 const back = document.createElement("button");
 back.setAttribute("class", "back");
@@ -191,31 +195,53 @@ function goBack() {
   appdiv.style.display = "none";
   quizdiv.style.display = "block";
 }
-function saveToLocalStorage() {
-  let selectedValue = categorySelect.value;
-  const selectedIndex = category.findIndex(
-    (item) => item.value == selectedValue
-  );
-  const getId = category[selectedIndex].id;
-  // let selectedValue = categorySelect.value;
 
-  // setLocalStorageItem("selectedCategory", selectedValue);
-  localStorage.setItem("Quiz-Categories", getId);
-  getToLocalStorage();
+function saveToLocalStorage(getId) {
+  localStorage.setItem("selected_category", getId);
 }
-
-function getToLocalStorage() {
-  let selectedValue = categorySelect.value;
-  const selectedIndex = category.findIndex(
-    (item) => item.value == selectedValue
-  );
-  const getId = category[selectedIndex].id;
-  // let selectedValue = categorySelect.value;
-
-  // setLocalStorageItem("selectedCategory", selectedValue);
-  localStorage.getItem("Quiz-Categories", getId);
+function getStorage() {
+  return localStorage.getItem("selected_category");
 }
-// {
+function checkedCategory() {
+  const storeCategory = getStorage();
+  if (storeCategory) {
+    dropdownClick(storeCategory);
+  }
+}
+checkedCategory();
+//
+// function getStorage() {
+//   // window.addEventListener('load',)
+//   const get = localStorage.getItem("Quiz-Categories");
+//   //   updateQuizListUI(get);
+//   // }
+//   if (get) {
+//     selectedValue = get;
+//     document.querySelector("#submit").click();
+//   }
+// }
+
+// function saveToLocalStorage() {
+//   const categorySelect = document.getElementById("option");
+//   let selectedValue = categorySelect.value;
+//   const selectedIndex = category.findIndex(
+//     (item) => item.value == selectedValue
+//   );
+//   const getId = category[selectedIndex].id;
+//   // let selectedValue = categorySelect.value;
+//   // setLocalStorageItem("selectedCategory", selectedValue);
+//   localStorage.setItem("Quiz-Categories", getId);
+// }
+
+// function getToLocalStorage() {
+//   // let selectedValue = categorySelect.value;
+//   // const selectedIndex = category.findIndex(
+//   //   (item) => item.value == selectedValue
+//   // );
+//   // const getId = category[selectedIndex].id;
+//   // localStorage.getItem("Quiz-Categories", getId);
+// }
+// // {
 //   id: 2,
 //   question: "2.Where are the contents of your computer's hard drive indexed?",
 //   options: ["(A) Yahoo!", "(B) Google", "(C) MSN", "(D) None of the above"],
@@ -243,3 +269,5 @@ function getToLocalStorage() {
 //   ],
 //   answer: "(B) Web Browser",
 // },
+// saveToLocalStorage();
+// saveToLocalStorage();
