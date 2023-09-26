@@ -1,15 +1,6 @@
 const appdiv = document.querySelector("#app");
 appdiv.style.display = "none";
-// const category = [
-//   {
-//     name: "Computer Science",
-//     value: "computer",
-//   },
-//   {
-//     name: "biology",
-//     value: "bio",
-//   },
-// ];
+
 const category = [
   {
     id: 1234,
@@ -39,7 +30,7 @@ document.getElementById("submit").addEventListener("click", function (e) {
 function dropdownClick(getId) {
   const appdiv = document.querySelector("#app");
   const quizdiv = document.querySelector("#quizForm");
-  // window.location.href = `index.html?type=${selectedValue}`;
+
   appdiv.style.display = "block";
   quizdiv.style.display = "none";
   saveToLocalStorage(getId);
@@ -77,34 +68,7 @@ const Question = [
     category: 2345,
   },
 ];
-// const English = [
 
-//     answer: "[B] NIT Srinagar",
-//   },
-//   {
-//     id: "6",
-//     question:
-//       "2.Who is the head of the ‘Parliamentary committee on official languages’?",
-//     options: [
-//       "[A] Rajnath Singh",
-//       "[B] Amit Shah",
-//       "[C] Nitin Gadkari",
-//       "[D] Piyush Goyal",
-//     ],
-//     answer: "[B] Amit Shah",
-//   },
-// ];
-// const questionCollection = {
-//   computer: computer,
-//   bio: bio,
-// };
-// const questionCollection = {
-//   Computer_Science: Computer_Science,
-//   English: English,
-// };
-// const urlParams = new URLSearchParams(window.location.search);
-// const myType = urlParams.get("type");
-// console.log(questionCollection[myType]);
 function makeQuizDiv(quiz) {
   const div = document.createElement("div");
   div.setAttribute("id", `question-${quiz.id}`);
@@ -136,20 +100,7 @@ function makeQuizDiv(quiz) {
       resDiv.style.color = "yellow";
     }
   });
-  //   if (selectedOption) {
-  //     const selectedAnswer = selectedOption.value;
-  //     if (selectedAnswer === quiz.answer) {
-  //       resDiv.innerHTML = "Correct Answer!";
-  //       resDiv.style.color = "green";
-  //     } else {
-  //       resDiv.innerHTML = "Sorry,correct answer is ";
-  //       resDiv.style.color = "red";
-  //     }
-  //   } else {
-  //     resDiv.innerHTML = "Please select an option.";
-  //     resDiv.style.color = "yellow";
-  //   }
-  // });
+
   for (let i = 0; i < quiz.options.length; i++) {
     const label = document.createElement("label");
     const radio = document.createElement("input");
@@ -271,3 +222,56 @@ checkedCategory();
 // },
 // saveToLocalStorage();
 // saveToLocalStorage();
+//   if (selectedOption) {
+//     const selectedAnswer = selectedOption.value;
+//     if (selectedAnswer === quiz.answer) {
+//       resDiv.innerHTML = "Correct Answer!";
+//       resDiv.style.color = "green";
+//     } else {
+//       resDiv.innerHTML = "Sorry,correct answer is ";
+//       resDiv.style.color = "red";
+//     }
+//   } else {
+//     resDiv.innerHTML = "Please select an option.";
+//     resDiv.style.color = "yellow";
+//   }
+// });
+// const English = [
+
+//     answer: "[B] NIT Srinagar",
+//   },
+//   {
+//     id: "6",
+//     question:
+//       "2.Who is the head of the ‘Parliamentary committee on official languages’?",
+//     options: [
+//       "[A] Rajnath Singh",
+//       "[B] Amit Shah",
+//       "[C] Nitin Gadkari",
+//       "[D] Piyush Goyal",
+//     ],
+//     answer: "[B] Amit Shah",
+//   },
+// ];
+// const questionCollection = {
+//   computer: computer,
+//   bio: bio,
+// };
+// const questionCollection = {
+//   Computer_Science: Computer_Science,
+//   English: English,
+// };
+// const urlParams = new URLSearchParams(window.location.search);
+// const myType = urlParams.get("type");
+// console.log(questionCollection[myType]);
+// window.location.href = `index.html?type=${selectedValue}`;
+// const category = [
+//   {
+//     name: "Computer Science",
+//     value: "computer",
+//   },
+//   {
+//     name: "biology",
+//     value: "bio",
+//   },
+// ];
