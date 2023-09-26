@@ -3,24 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quiz app</title>
-    <script src="script.js" defer></script>
+    <title>Quiz App</title>
     <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
   </head>
   <body>
-    <div class="container">
+    <div id="quizForm">
       <h1>Quiz app</h1>
-      <form id="quizForm">
-        <label for="option">Choose form the category</label>
-        <select id="element" name="option">
-          <option value="">chose a value</option>
-          <!-- <option value="Computer_Science">Computer Science</option>
-          <option value="English">English</option> -->
-        </select>
-        <br />
-        <input type="submit" value="proceed" />
-      </form>
+      <label for="option">Choose from the category </label>
+      <select id="option" name="option">
+        <option value=""></option>
+        <!-- <option value="cs">Computer Science</option>
+        <option value="en">English</option> -->
+      </select>
+      <button type="submit" id="submit">Proceed</button>
     </div>
-    <!--  -->
+    <div id="app"></div>
+    <br />
   </body>
 </html>
